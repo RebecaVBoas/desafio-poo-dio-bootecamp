@@ -7,6 +7,18 @@ public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
+    //Adcionanod método que emiti um certificado, dos cursos concluidos. 
+    public void emitirCerttificado(){
+        Optional<Conteudo> conteudo = this.conteudosConcluidos.stream().findFirst();
+        if(conteudo.isPresent()) {
+            System.out.println("CERTIFICAMOS QUE O ALUNO"+ nome+ " CONCLUIO O CURSO"+
+                    conteudo.getTitulo();
+        } else {
+            System.err.println("Você ainda não pode emitir certificado, pois não concluio o curso. ")
+        }
+    }
+
+
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
